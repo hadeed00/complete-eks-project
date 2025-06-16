@@ -13,5 +13,5 @@ variable "vpc_cidr" {
 variable "iam_user_name" {
   description = "The IAM user name to grant EKS admin access."
   type        = string
-  default     = "root"
+  default     = "devops-admin"
 }

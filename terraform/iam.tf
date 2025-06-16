@@ -105,8 +105,10 @@ resource "aws_iam_user_policy" "eks_user_access" {
         Effect = "Allow"
         Action = [
           "eks:*",
-          "ec2:DescribeInstances",
-          "iam:ListRoles"
+          "ec2:*",
+          "iam:ListRoles",
+          "iam:PassRole",
+          "sts:AssumeRole"
         ]
         Resource = "*"
       }
