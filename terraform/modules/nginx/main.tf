@@ -6,3 +6,4 @@ resource "helm_release" "nginx_ingress" {
   version    = "4.10.0"  
 }
 
+

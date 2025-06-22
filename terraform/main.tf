@@ -13,6 +13,8 @@ module "eks_cluster" {
   subnet_ids  = module.vpc.private_subnets
   enable_irsa = true
 
+  enable_cluster_creator_admin_permissions = true
+
   eks_managed_node_groups = {
     default = {
       desired_size = 1
@@ -129,3 +131,27 @@ module "aws_auth" {
 
   depends_on = [module.eks_cluster]
 }
+
+# resource "kubernetes_config_map" "aws_auth" {
+#   metadata {
+#     name      = "aws-auth"
+#     namespace = "kube-system"
+#   }
+
+#   data = {
+#     mapRoles = yamlencode([
+#       {
+#         rolearn  = "arn:aws:iam::<account_id>:role/<nodegroup_role>"
+#         username = "system:node:{{EC2PrivateDNSName}}"
+#         groups   = ["system:bootstrappers", "system:nodes"]
+#       },
+#       {
+#         rolearn  = "arn:aws:iam::<account_id>:role/<admin_role>"
+#         username = "devops-admin"
+#         groups   = ["system:masters"]
+#       },
+#       // Add any pipeline roles here
+#     ])
+#     # Optionally: mapUsers, mapAccounts
+#   }
+# }
