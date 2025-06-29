@@ -132,6 +132,11 @@ module "aws_auth" {
   depends_on = [module.eks_cluster]
 }
 
+module "argocd" {
+  source = "./modules/argocd"
+  depends_on = [module.eks_cluster]
+}
+
 # resource "kubernetes_config_map" "aws_auth" {
 #   metadata {
 #     name      = "aws-auth"
