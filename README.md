@@ -20,7 +20,8 @@ aws eks --region eu-west-2 update-kubeconfig --name flask-eks-project
 kubectl get ingresses -A
 
 curl <Ingress.Address>/health
-
+ 
+kubectl -n argocd get secret argocd-initial-admin-secret -o jsonpath="{.data.password}" | base64 -d
 ```
 
 Which should return a status code of 200 for a healthy response.

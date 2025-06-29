@@ -1,0 +1,18 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: eks-cluster
+  namespace: argocd
+spec:
+  project: default
+  source:
+    repoURL: https://github.com/hadeed00/complete-eks-project/
+    targetRevision: HEAD
+    path: terraform
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: default
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
