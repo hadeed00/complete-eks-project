@@ -127,22 +127,12 @@ graph TD
 
 ## **Accessing Components**
 - **Flask App**: `http(s)://<elb-dns>/`
-- **Grafana**: `http(s)://<elb-dns>/grafana`
-- **ArgoCD**: `http(s)://<elb-dns>/argocd`
-- **Prometheus**: `http(s)://<elb-dns>/prometheus` (if exposed)
+- All other services are not connected to an ingress and would be locally port forwarded.
 
 ---
 
 ## **Security**
 - All access is secured via AWS IAM, Security Groups, and TLS certificates.
 - No static AWS credentials are stored in the repo; GitHub Actions uses OIDC to assume roles securely.
-
----
-
-## **Diagram Legend**
-- **Solid arrows**: Direct traffic or resource relationships
-- **Dashed arrows**: CI/CD or GitOps automation
-
----
 
 For more details, see the Terraform and Helm module files in this repository.
